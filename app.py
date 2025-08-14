@@ -1,13 +1,16 @@
 import requests
 import json 
 import os
-from dotenv import load_dotenv 
+from dotenv import load_dotenv
+from flask import Flask, render_template, request 
 
 load_dotenv() # This line loads the variables from .env
+app = Flask(__name__) # Initialize the Flask app
 
 # Now get the API key using os.getenv()
 api_key = os.getenv("API_KEY")
 
+# Get weather function
 def get_weather(api_key, city):
     base_url = "https://api.openweathermap.org/data/2.5/weather"
     params = {
@@ -25,6 +28,21 @@ def get_weather(api_key, city):
         print(response.json())
     return None 
 
+# The main page route
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# The route to handle the form submission and display weather
+@app.route('/weather')
+def get_weather_route():
+    city = request.args.get('city') # Get city from form
+    weather_data = None
+    if city:
+        api_key = os.getenv("API_KEY")
+        weather_data = get_weather(api_key, city)
+    return render_template('weather.html', weather=weather_data)
+
 def display_weather(weather_data):
     if weather_data:
         main_weather = weather_data['weather'][0]['main']
@@ -39,11 +57,3 @@ def display_weather(weather_data):
         print(f"Wind Speed: {wind_speed} m/s")
     else:
         print("Could not retrieve weather data.") 
-
-if __name__ == "__main__":
-    if not api_key:
-        print("Error: API_KEY not found. Please set it in your .env file.")
-    else:
-        city = input("Enter a city name: ")
-        weather_info = get_weather(api_key, city)
-        display_weather(weather_info)
