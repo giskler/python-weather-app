@@ -1,4 +1,4 @@
-# Python Command-Line Weather App
+# Python Weather App
 
 A simple and clean command-line application built with Python that fetches and displays the current weather for any city using the OpenWeatherMap API.
 
