@@ -9,7 +9,7 @@ This project was built to practice interacting with third-party APIs, handling J
 *   Fetches real-time weather data from the OpenWeatherMap API.
 *   Securely manages the API key using environment variables (does not expose the key in the source code).
 *   Clean and readable output of current weather conditions, including temperature, humidity, and wind speed.
-*   User-friendly command-line interface.
+*   User-friendly interface.
 
 ## Technologies Used
 
