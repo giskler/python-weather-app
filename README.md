@@ -1,6 +1,6 @@
 # Python Weather App
 
-A simple and clean command-line application built with Python that fetches and displays the current weather for any city using the OpenWeatherMap API.
+A simple and clean application built with Python that fetches and displays the current weather for any city using the OpenWeatherMap API.
 
 This project was built to practice interacting with third-party APIs, handling JSON data, and managing secret keys securely in a Python environment.
 
